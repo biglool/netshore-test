@@ -1,0 +1,32 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.ServiceModel;
+using System.Text;
+
+namespace WcfServiceXML
+{
+    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
+ 
+        [ServiceContract]
+        public interface IServiceXML
+        {
+            [OperationContract]
+            List<heroi> Herois();
+        }
+
+        // una mica de format
+        [DataContract(Name = "Heroi", Namespace = "http://www.superheroes.com")]
+        public class heroi
+        {
+            [DataMember(Name = "Nom")]
+            internal string nom;
+            public heroi(string nouNom)
+            {
+                if (nouNom == null) nom = "";
+                else nom = nouNom;
+            }
+        }
+}
+
